@@ -16,6 +16,8 @@ const Feedback = ({good, neutral, bad, setGood, setNeutral, setBad}) => {
   )
 }
 
+const Statistic = ({text, value, optionalUnit}) => <p>{text} {value} {optionalUnit}</p>
+
 const Statistics = ({goodVotes, neutralVotes, badVotes}) => {
   const total = goodVotes + neutralVotes + badVotes
   let average = (goodVotes * 1 + badVotes * -1) / total
@@ -33,13 +35,13 @@ const Statistics = ({goodVotes, neutralVotes, badVotes}) => {
   return(
     <div>
       <h2>Customer Feedback</h2>
-      <p>😄 Good: {goodVotes}</p>
-      <p>😐 Neutral: {neutralVotes}</p>
-      <p>☹️ Bad: {badVotes}</p>
+      <Statistic text="😄 Good:" value={goodVotes} />
+      <Statistic text="😐 Neutral:" value={neutralVotes} />
+      <Statistic text="☹️ Bad:" value={badVotes} />
       <h3>Statistics</h3>
-      <p>Total responses: {total}</p>
-      <p>Average: {average}</p>
-      <p>Postive: {positivePercentage * 100} %</p>
+      <Statistic text="Total responses:" value={total} />
+      <Statistic text="Average:" value={average} />
+      <Statistic text="Postive:" value={positivePercentage * 100} optionalUnit="%" />            
     </div>
     )
 }
