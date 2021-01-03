@@ -17,14 +17,24 @@ const Feedback = ({good, neutral, bad, setGood, setNeutral, setBad}) => {
 }
 
 const Statistics = ({goodVotes, neutralVotes, badVotes}) => {
-  const total = goodVotes + neutralVotes + badVotes;
+  const total = goodVotes + neutralVotes + badVotes
+  let average = (goodVotes * 1 + badVotes * -1) / total
+  let positivePercentage = goodVotes / total
   
+  // Don't display NaN
+  if(Number.isNaN(average)) average = 0;
+  if(Number.isNaN(positivePercentage)) positivePercentage = 0;
+
   return(
     <div>
       <h2>Customer Feedback</h2>
       <p>😄 Good: {goodVotes}</p>
       <p>😐 Neutral: {neutralVotes}</p>
       <p>☹️ Bad: {badVotes}</p>
+      <h3>Statistics</h3>
+      <p>Total responses: {total}</p>
+      <p>Average: {average}</p>
+      <p>Postive: {positivePercentage * 100} %</p>
     </div>
     )
 }
