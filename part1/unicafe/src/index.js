@@ -21,9 +21,14 @@ const Statistics = ({goodVotes, neutralVotes, badVotes}) => {
   let average = (goodVotes * 1 + badVotes * -1) / total
   let positivePercentage = goodVotes / total
   
-  // Don't display NaN
-  if(Number.isNaN(average)) average = 0;
-  if(Number.isNaN(positivePercentage)) positivePercentage = 0;
+  if(total === 0) {
+    return(
+      <div>
+        <h3>Statistics</h3>
+        <p>No feedback given</p>
+      </div>
+    )
+  }
 
   return(
     <div>
