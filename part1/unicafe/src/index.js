@@ -16,7 +16,7 @@ const Feedback = ({good, neutral, bad, setGood, setNeutral, setBad}) => {
   )
 }
 
-const Statistic = ({text, value, optionalUnit}) => <p>{text} {value} {optionalUnit}</p>
+const Statistic = ({text, value, optionalUnit}) => <span>{text} {value} {optionalUnit}</span>
 
 const Statistics = ({goodVotes, neutralVotes, badVotes}) => {
   const total = goodVotes + neutralVotes + badVotes
@@ -34,14 +34,30 @@ const Statistics = ({goodVotes, neutralVotes, badVotes}) => {
 
   return(
     <div>
-      <h2>Customer Feedback</h2>
-      <Statistic text="😄 Good:" value={goodVotes} />
-      <Statistic text="😐 Neutral:" value={neutralVotes} />
-      <Statistic text="☹️ Bad:" value={badVotes} />
-      <h3>Statistics</h3>
-      <Statistic text="Total responses:" value={total} />
-      <Statistic text="Average:" value={average} />
-      <Statistic text="Postive:" value={positivePercentage * 100} optionalUnit="%" />            
+      <h2>Statistics</h2>
+      <table>
+        <tbody>
+          <tr><td>
+            <Statistic text="😄 Good:" value={goodVotes} />
+          </td></tr>
+          <tr><td>
+            <Statistic text="😐 Neutral:" value={neutralVotes} />
+          </td></tr>
+          <tr><td>
+            <Statistic text="☹️ Bad:" value={badVotes} />
+          </td></tr>
+          <tr><td>
+            <Statistic text="Total responses:" value={total} />
+          </td></tr>
+          <tr><td>
+            <Statistic text="Average:" value={average} />
+          </td></tr>
+          <tr><td>
+            <Statistic text="Postive:" value={positivePercentage * 100} optionalUnit="%" />
+          </td></tr>
+        </tbody>
+      </table>
+                  
     </div>
     )
 }
