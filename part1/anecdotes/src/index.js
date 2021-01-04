@@ -17,6 +17,22 @@ const Vote = ({allVotes, current, setAllVotes}) => {
   )
 }
 
+const MostPopular = ( {allVotes}) => {
+  const index = allVotes.indexOf(Math.max(...allVotes))
+
+  if (allVotes[index] === 0) {
+    return(<h2>None of the anecdotes have votes</h2>)
+  }
+
+  return (
+    <>
+    <h2>Anecdote with most votes</h2>
+    <p>{anecdotes[index]}</p>
+    <p>has {allVotes[index]} votes</p>
+    </>
+  )
+}
+
 const App = (props) => {
   const [selected, setSelected] = useState(0)
   const [allVotes, setAllVotes] = useState(new Array(6).fill(0))
@@ -41,6 +57,7 @@ const App = (props) => {
         <Vote allVotes={allVotes} current={selected} setAllVotes={setAllVotes} />
         <span>&nbsp;&nbsp;</span>
         <Button handleClick={handleClick}/>
+        <MostPopular allVotes={allVotes} />
       </center>
     </div>
   )
