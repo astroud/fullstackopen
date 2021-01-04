@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
-const Button = ({setSelected, length}) => {
-  let random = Math.floor(Math.random() * Math.floor(length))
+const Button = ({handleClick}) => {
   return (
-    <button onClick={() => setSelected(random)}>Get next anecdote</button>
+    <button onClick={handleClick}>Get next anecdote</button>
   )
 }
 
@@ -22,6 +21,18 @@ const App = (props) => {
   const [selected, setSelected] = useState(0)
   const [allVotes, setAllVotes] = useState(new Array(6).fill(0))
   
+  const handleClick = () => {
+    let random = Math.floor(Math.random() * Math.floor(anecdotes.length))
+
+    if (random === selected) {
+      do {
+        random = Math.floor(Math.random() * Math.floor(anecdotes.length))
+      } while (random === selected)
+    }
+
+    setSelected(random)
+  }
+
   return (
     <div>
       <center>
@@ -29,7 +40,7 @@ const App = (props) => {
         <p>has {allVotes[selected]} votes</p>
         <Vote allVotes={allVotes} current={selected} setAllVotes={setAllVotes} />
         <span>&nbsp;&nbsp;</span>
-        <Button setSelected={setSelected} length={anecdotes.length} />
+        <Button handleClick={handleClick}/>
       </center>
     </div>
   )
