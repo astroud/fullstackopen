@@ -4,7 +4,7 @@ const Directory = ({ people }) => {
   return(
     <ul>
       {people.map(person =>
-        <li key={person.name}>{person.name}</li>
+        <li key={person.name}>{person.name} {person.phone}</li>
       )}
     </ul>
   )
@@ -12,9 +12,10 @@ const Directory = ({ people }) => {
 
 const App = () => {
   const [ people, setPeople ] = useState([
-    { name: 'Arto Hellas' }
+    { name: 'Arto Hellas', phone: '040-1234567' }
   ]) 
   const [ newName, setNewName ] = useState('')
+  const [ newPhone, setNewPhone ] = useState('')
 
   const duplicateName = (newName, savedNames) => {
     let filteredNames = savedNames.filter(
@@ -28,12 +29,16 @@ const App = () => {
       alert(`${newName} is already in the phonebook`)
     }
     else {
-      setPeople(people.concat({name: newName}))
+      setPeople(people.concat({name: newName, phone: newPhone}))
     }
   }
 
   const handlePersonChange = (event) => {
     setNewName(event.target.value)
+  }
+
+  const handlePhoneChange = (event) => {
+    setNewPhone(event.target.value)
   }
 
   return (
@@ -44,6 +49,14 @@ const App = () => {
           name: <input
                   value={newName}
                   onChange={handlePersonChange}
+                  required={true}
+                />
+        </div>
+        <div>
+          number: <input
+                  value={newPhone}
+                  onChange={handlePhoneChange}
+                  required={true}
                 />
         </div>
         <div>
