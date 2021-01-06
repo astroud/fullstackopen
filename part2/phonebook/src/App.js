@@ -16,10 +16,20 @@ const App = () => {
   ]) 
   const [ newName, setNewName ] = useState('')
 
+  const duplicateName = (newName, savedNames) => {
+    let filteredNames = savedNames.filter(
+          savedName => savedName.name.includes(newName))
+    return filteredNames.length === 0 ? false : true 
+  }
+
   const addName = (event) => {
     event.preventDefault()
-    console.log('setPeople should save:', newName)
-    setPeople(people.concat({name: newName}))
+    if(duplicateName(newName, people)) {
+      alert(`${newName} is already in the phonebook`)
+    }
+    else {
+      setPeople(people.concat({name: newName}))
+    }
   }
 
   const handlePersonChange = (event) => {
