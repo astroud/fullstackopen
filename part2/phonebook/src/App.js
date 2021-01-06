@@ -19,7 +19,7 @@ const App = () => {
 
   const duplicateName = (newName, savedNames) => {
     let filteredNames = savedNames.filter(
-          savedName => savedName.name.includes(newName))
+          savedName => savedName.name === newName)
     return filteredNames.length === 0 ? false : true 
   }
 
