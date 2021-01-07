@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
 
-const Directory = ({ people }) => {
+const Directory = ({ people, filter }) => {
+  const searchTerm = filter.toLowerCase()
+
+  let filteredPeople = 
+    people.filter(person =>
+                  person.name.toLowerCase().includes(searchTerm))
   return(
     <ul>
-      {people.map(person =>
+      {filteredPeople.map(person =>
         <li key={person.name}>{person.name} {person.phone}</li>
       )}
     </ul>
@@ -11,11 +16,15 @@ const Directory = ({ people }) => {
 }
 
 const App = () => {
-  const [ people, setPeople ] = useState([
-    { name: 'Arto Hellas', phone: '040-1234567' }
-  ]) 
+  const [people, setPeople] = useState([
+    { name: 'Arto Hellas', number: '040-123456' },
+    { name: 'Ada Lovelace', number: '39-44-5323523' },
+    { name: 'Dan Abramov', number: '12-43-234345' },
+    { name: 'Mary Poppendieck', number: '39-23-6423122' }
+  ])
   const [ newName, setNewName ] = useState('')
   const [ newPhone, setNewPhone ] = useState('')
+  const [ filter, setNewFilter ] = useState('')
 
   const duplicateName = (newName, savedNames) => {
     let filteredNames = savedNames.filter(
@@ -41,9 +50,31 @@ const App = () => {
     setNewPhone(event.target.value)
   }
 
+  const handleFilterChange = (event) => {
+    setNewFilter(event.target.value)
+  }
+
+  const Filter = () => {
+    return(
+      <>
+        <form>
+          <div>
+            filter names by:
+              <input
+                value={filter}
+                onChange={handleFilterChange}
+                ref={(input) => {input && input.focus() }}
+              />
+        </div>
+        </form>
+      </>
+    )
+  }
+
   return (
     <div>
       <h2>Phonebook</h2>
+      <Filter />
       <form onSubmit={addName}>
         <div>
           name: <input
@@ -64,7 +95,7 @@ const App = () => {
         </div>
       </form>
       <h2>Numbers</h2>
-      <Directory people={people} />
+      <Directory people={people} filter={filter} />
     </div>
   )
 }
