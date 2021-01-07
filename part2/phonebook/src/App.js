@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Filter from './Components/Filter'
 
 const Directory = ({ people, filter }) => {
   const searchTerm = filter.toLowerCase()
@@ -54,27 +55,11 @@ const App = () => {
     setNewFilter(event.target.value)
   }
 
-  const Filter = () => {
-    return(
-      <>
-        <form>
-          <div>
-            filter names by:
-              <input
-                value={filter}
-                onChange={handleFilterChange}
-                ref={(input) => {input && input.focus() }}
-              />
-        </div>
-        </form>
-      </>
-    )
-  }
 
   return (
     <div>
       <h2>Phonebook</h2>
-      <Filter />
+      <Filter handleFilterChange={handleFilterChange} />
       <form onSubmit={addName}>
         <div>
           name: <input
