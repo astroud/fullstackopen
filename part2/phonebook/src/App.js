@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Filter from './Components/Filter'
+import FilterField from './Components/FilterField'
 
 const Directory = ({ people, filter }) => {
   const searchTerm = filter.toLowerCase()
@@ -59,7 +59,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <Filter handleFilterChange={handleFilterChange} />
+      <FilterField handleFilterChange={handleFilterChange} />
       <form onSubmit={addName}>
         <div>
           name: <input

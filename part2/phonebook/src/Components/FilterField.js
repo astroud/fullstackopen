@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Filter = ({ handleFilterChange }) => {
+const FilterField = ({ handleFilterChange }) => {
   return(
     <>
       <form>
@@ -13,4 +13,4 @@ const Filter = ({ handleFilterChange }) => {
   )
 }
 
-export default Filter
+export default FilterField
