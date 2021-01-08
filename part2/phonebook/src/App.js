@@ -1,20 +1,8 @@
 import React, { useState } from 'react'
 import FilterField from './Components/FilterField'
+import Directory from './Components/Directory'
+import PersonForm from './Components/PersonForm'
 
-const Directory = ({ people, filter }) => {
-  const searchTerm = filter.toLowerCase()
-
-  let filteredPeople = 
-    people.filter(person =>
-                  person.name.toLowerCase().includes(searchTerm))
-  return(
-    <ul>
-      {filteredPeople.map(person =>
-        <li key={person.name}>{person.name} {person.phone}</li>
-      )}
-    </ul>
-  )
-}
 
 const App = () => {
   const [people, setPeople] = useState([
@@ -60,27 +48,14 @@ const App = () => {
     <div>
       <h2>Phonebook</h2>
       <FilterField handleFilterChange={handleFilterChange} />
-      <form onSubmit={addName}>
-        <div>
-          name: <input
-                  value={newName}
-                  onChange={handlePersonChange}
-                  required={true}
-                />
-        </div>
-        <div>
-          number: <input
-                  value={newPhone}
-                  onChange={handlePhoneChange}
-                  required={true}
-                />
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
-      <h2>Numbers</h2>
-      <Directory people={people} filter={filter} />
+      <PersonForm addName={addName}
+                  newName={newName}
+                  handlePersonChange={handlePersonChange}
+                  newPhone={newPhone}
+                  handlePhoneChange={handlePhoneChange}
+                  title="Add a new entry"
+      />
+      <Directory people={people} filter={filter} title="Numbers"/>
     </div>
   )
 }
