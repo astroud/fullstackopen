@@ -1,7 +1,8 @@
 import React from 'react'
+import ButtonDisplayCountry from './ButtonDisplayCountry'
 import DisplayCountry from "./DisplayCountry"
 
-const DisplayCountries = ({ countries }) => {
+const DisplayCountries = ({ countries, setResults }) => {
   if (countries.length > 10) {
     return(<p>Too many matches, specifiy another filter</p>)
   }
@@ -12,7 +13,9 @@ const DisplayCountries = ({ countries }) => {
         {countries.map( country => {
           return(
             <li key={country.name+country.population.toString()}>
-              {country.name}
+              {country.name} &nbsp;
+              <ButtonDisplayCountry country={country}
+                                    setResults={setResults} />
             </li>)
         })}
       </ul>

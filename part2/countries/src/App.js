@@ -38,7 +38,8 @@ function App() {
         setResults={setResults}
       />
 
-      <DisplayCountries countries={results} />
+      <DisplayCountries countries={results}
+                        setResults={setResults}/>
     </div>
   );
 }
