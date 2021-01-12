@@ -2,7 +2,8 @@ import React from 'react'
 import ButtonDisplayCountry from './ButtonDisplayCountry'
 import DisplayCountry from "./DisplayCountry"
 
-const DisplayCountries = ({ countries, setResults }) => {
+const DisplayCountries = ({ countries, setResults, 
+                            weather, setWeather }) => {
   if (countries.length > 10) {
     return(<p>Too many matches, specifiy another filter</p>)
   }
@@ -23,7 +24,10 @@ const DisplayCountries = ({ countries, setResults }) => {
   }
 
   if (countries.length === 1) {
-    return(<DisplayCountry country={countries[0]}/>)
+    return(<DisplayCountry  country={countries[0]}
+                            weather={weather}
+                            setWeather={setWeather}
+          />)
   }
   
   else {

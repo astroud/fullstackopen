@@ -8,6 +8,7 @@ function App() {
   const [ countries, setCountries ] = useState([])
   const [ results, setResults ] = useState([])
   const [ searchName, setSearchName ] = useState('')
+  const [ weather, setWeather ] = useState({})
 
   useEffect(() => {
     axios
@@ -39,7 +40,10 @@ function App() {
       />
 
       <DisplayCountries countries={results}
-                        setResults={setResults}/>
+                        setResults={setResults}
+                        weather={weather}
+                        setWeather={setWeather}
+      />
     </div>
   );
 }
