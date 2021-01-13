@@ -1,6 +1,7 @@
 import React from 'react'
+import peopleService from '../services/people'
 
-const Directory = ({ people, filter, title }) => {
+const Directory = ({ people, setPeople, filter, title }) => {
   const searchTerm = filter.toLowerCase()
 
   let filteredPeople = 
@@ -11,7 +12,17 @@ const Directory = ({ people, filter, title }) => {
       <h2>{title}</h2>
       <ul>
         {filteredPeople.map(person =>
-          <li key={person.name}>{person.name} {person.phone}</li>
+          <li key={person.id}>
+            {person.name} {person.phone} 
+            <button key={person.id}
+                    onClick={() => {
+                      peopleService.remove( person.id,
+                                            person.name,
+                                            people,
+                                            setPeople )
+                    }}
+            >delete</button>
+          </li>
         )}
       </ul>
     </>

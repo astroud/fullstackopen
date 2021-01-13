@@ -59,7 +59,11 @@ const App = () => {
                   handlePhoneChange={handlePhoneChange}
                   title="Add a new entry"
       />
-      <Directory people={people} filter={filter} title="Numbers"/>
+      <Directory  people={people}
+                  setPeople={setPeople}
+                  filter={filter}
+                  title="Numbers"
+      />
     </div>
   )
 }
