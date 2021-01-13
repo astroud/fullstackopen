@@ -10,7 +10,7 @@ const getAll = () => {
 const add = ( newName, newPhone, people) => {
   const request = axios
                     .post(baseUrl,
-                          { name: newName, phone: newPhone })
+                          { name: newName, number: newPhone })
   return request.then(response => people.concat(response.data))
 }
 
