@@ -16,6 +16,11 @@ const App = () => {
       .then(initialPeople => { setPeople(initialPeople) })
   }, []);
 
+  const clearFields = () => {
+    setNewName('')
+    setNewPhone('')
+  }
+
   const duplicateName = (newName, savedNames) => {
     let filteredNames = savedNames.filter(
           savedName => savedName.name.toLowerCase() === newName.toLowerCase())
@@ -30,8 +35,7 @@ const App = () => {
     else {
       peopleService.add(newName, newPhone, people, setPeople)
         .then(people => setPeople(people))
-      setNewName('')
-      setNewPhone('')
+      clearFields()
     }
   }
 
