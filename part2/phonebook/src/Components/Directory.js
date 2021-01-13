@@ -13,7 +13,7 @@ const Directory = ({ people, setPeople, filter, title }) => {
       <ul>
         {filteredPeople.map(person =>
           <li key={person.id}>
-            {person.name} {person.phone} 
+            {person.name} {person.number} 
             <button key={person.id}
                     onClick={() => {
                       peopleService.remove( person.id,
