@@ -29,8 +29,21 @@ const App = () => {
 
   const addName = (event) => {
     event.preventDefault()
+    const message = `${newName} is already in the phonebook, do you want to update the number?`
+
     if(duplicateName(newName, people)) {
-      alert(`${newName} is already in the phonebook`)
+      if(window.confirm(message)) {      
+        const id = people
+                    .filter(person => 
+                      person.name.toLowerCase() === newName.toLowerCase()
+                    )[0].id
+                    
+        peopleService
+          .update(id, newName, newPhone)
+          .then(returnedPerson => {
+            setPeople(people.map(person => person.id !== id ? person : returnedPerson))
+          })
+      }
     }
     else {
       peopleService.add(newName, newPhone, people, setPeople)

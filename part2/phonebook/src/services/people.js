@@ -28,9 +28,14 @@ const remove = (id, name, people, setPeople) => {
       .catch(error => {
         alert(`'${name}' was already deleted from server`)
       })
-
   }
 }
 
-const peopleService = { getAll, add, remove }
+const update = (id, newName, newPhone) => {
+  const request = axios.put(`${baseUrl}/${id}`,
+                    { id: id, name: newName, number: newPhone })
+  return request.then(response => response.data)
+}
+
+const peopleService = { getAll, add, remove, update }
 export default peopleService
