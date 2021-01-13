@@ -18,7 +18,7 @@ const App = () => {
 
   const duplicateName = (newName, savedNames) => {
     let filteredNames = savedNames.filter(
-          savedName => savedName.name === newName)
+          savedName => savedName.name.toLowerCase() === newName.toLowerCase())
     return filteredNames.length === 0 ? false : true 
   }
 
