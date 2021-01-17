@@ -3,12 +3,15 @@ import FilterField from './Components/FilterField'
 import Directory from './Components/Directory'
 import PersonForm from './Components/PersonForm'
 import peopleService from './services/people'
+import Notification from './Components/Notification'
 
 const App = () => {
   const [ people, setPeople ] = useState([])
   const [ newName, setNewName ] = useState('')
   const [ newPhone, setNewPhone ] = useState('')
   const [ filter, setNewFilter ] = useState('')
+  const [ notificationMsg, setNotificationMsg ] = useState('')
+  const [ isError, setIsError ] = useState(false)
 
   useEffect(() => {
     peopleService
@@ -19,6 +22,12 @@ const App = () => {
   const clearFields = () => {
     setNewName('')
     setNewPhone('')
+  }
+
+  const hideNotification = (seconds=5) => {
+    setTimeout(() => {
+      setNotificationMsg('')
+    }, seconds * 1000)
   }
 
   const duplicateName = (newName, savedNames) => {
@@ -43,11 +52,17 @@ const App = () => {
           .then(returnedPerson => {
             setPeople(people.map(person => person.id !== id ? person : returnedPerson))
           })
+
+          setNotificationMsg(`${newName} has been updated in the phone book.`)
+          hideNotification()
       }
     }
     else {
       peopleService.add(newName, newPhone, people, setPeople)
         .then(people => setPeople(people))
+
+      setNotificationMsg(`${newName} has been saved to the phone book.`)
+      hideNotification()
       clearFields()
     }
   }
@@ -67,6 +82,10 @@ const App = () => {
 
   return (
     <div>
+      <Notification
+        message={notificationMsg}
+        error={isError}
+      />
       <h2>Phonebook</h2>
       <FilterField handleFilterChange={handleFilterChange} />
       <PersonForm addName={addName}
