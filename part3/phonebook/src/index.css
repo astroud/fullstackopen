@@ -1,0 +1,16 @@
+body {
+  background: #eee;
+}
+
+.notification {
+  border-style: solid;
+  border-width: 2px;
+  background-color: rgba(128, 183, 128, 0.421);
+  border-color: rgb(128, 183, 128);
+  color: #555;
+}
+
+.notification--error {
+  background-color: rgba(255, 0, 0, 0.297);
+  border-color: rgba(255, 0, 0, 0.633);
+}
