@@ -99,6 +99,9 @@ const App = () => {
                   setPeople={setPeople}
                   filter={filter}
                   title="Numbers"
+                  setIsError={setIsError}
+                  setNotificationMsg={setNotificationMsg}
+                  hideNotification={hideNotification}
       />
     </div>
   )

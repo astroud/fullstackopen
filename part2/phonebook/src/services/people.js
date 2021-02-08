@@ -14,7 +14,8 @@ const add = ( newName, newPhone, people) => {
   return request.then(response => people.concat(response.data))
 }
 
-const remove = (id, name, people, setPeople) => {
+const remove = (id, name, people, setPeople,
+                setIsError, setNotificationMsg, hideNotification) => {
   const request = axios.delete(`${baseUrl}/${id}`)
 
   if(window.confirm(`Delete ${name}?`)) {
@@ -26,7 +27,10 @@ const remove = (id, name, people, setPeople) => {
         )
       })
       .catch(error => {
-        alert(`'${name}' was already deleted from server`)
+        console.log(`'${name}' was already deleted from server`)
+        setIsError(true)
+        setNotificationMsg(`'${name}' was already deleted from server`)
+        hideNotification()
       })
   }
 }

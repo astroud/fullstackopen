@@ -1,7 +1,8 @@
 import React from 'react'
 import peopleService from '../services/people'
 
-const Directory = ({ people, setPeople, filter, title }) => {
+const Directory = ({  people, setPeople, filter, title,
+                      setIsError, setNotificationMsg, hideNotification }) => {
   const searchTerm = filter.toLowerCase()
 
   let filteredPeople = 
@@ -19,7 +20,10 @@ const Directory = ({ people, setPeople, filter, title }) => {
                       peopleService.remove( person.id,
                                             person.name,
                                             people,
-                                            setPeople )
+                                            setPeople,
+                                            setIsError,
+                                            setNotificationMsg,
+                                            hideNotification )
                     }}
             >delete</button>
           </li>
