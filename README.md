@@ -13,6 +13,7 @@ In Part 3, I split the lesson examples and exercises into their own repos to sim
 ## Exercises:
 * [Phone Frontend](https://github.com/astroud/fullstackopen-phone-frontend)
 * [Phone Backend](https://github.com/astroud/fullstackopen-phone-backend)
+* [Blog](https://github.com/astroud/fso-blog)
 
 ## Course Notes
 * [My notes for the course](https://github.com/astroud/notes)
